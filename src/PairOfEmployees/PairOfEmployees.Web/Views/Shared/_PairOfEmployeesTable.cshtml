@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PairOfEmployees.Data.Models.EmployeesPair>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Employee ID #1
+                </th>
+                <th>
+                    Employee ID #2
+                </th>
+                <th>
+                    Project ID
+                </th>
+                <th>
+                    Days worked
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstEmployeeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SecondEmployeeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DaysWorked)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <span id="sum">
+        Total Days Worked: 
+        @{
+            @Model.Sum(x => x.DaysWorked);
+        }
+    </span>
+}
+else
+{
+    <p id="no-result">No results found.</p>
+}
